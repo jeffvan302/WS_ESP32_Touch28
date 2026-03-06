@@ -3,6 +3,9 @@
 Hardware abstraction library for the **Waveshare ESP32-S3 Touch 2.8"** development board. Provides ready-to-use drivers for all onboard peripherals through a single header include.
 [https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-2.8](https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-2.8)
 
+## WIFI Notes
+There is no added features for bluetooth or wifi, since the built in libraries for ESP32 is sufficient.  Depending on the project other libraries would be required.  The intent of this library is to make the specific hardware on the **Waveshare ESP32-S3 Touch 2.8"** easy to access.
+
 ## Features
 
 - **ST7789 240×320 LCD** — PSRAM-backed framebuffer with dirty-rectangle optimization and dual-core mutex safety
@@ -137,10 +140,10 @@ All drawing functions must be called between `LCD_FB_Start()` and `LCD_FB_End()`
 
 | Function | Description |
 |---|---|
-| `LCD_Init()` | Initialize LCD and touch hardware (called by `WS_ESP32_Init`). |
+| `LCD_Init()` | Initialize LCD and touch hardware (called by **`WS_ESP32_Init`**). |
 | `LCD_SetRotation(uint8_t r)` | Set display rotation at runtime (0–3). Updates dimensions, touch mapping, and LVGL. |
 | `LCD_GetRotation()` | Get current rotation (0–3). |
-| `Backlight_Init()` | Initialize PWM backlight (called by `WS_ESP32_Init`). |
+| `Backlight_Init()` | Initialize PWM backlight (called by **`WS_ESP32_Init`**). |
 | `Set_Backlight(uint8_t level)` | Set backlight brightness (0–100). |
 | `LCD_FB_Start()` | Acquire framebuffer mutex — safe to draw after this. |
 | `LCD_FB_End()` | Release mutex and mark frame dirty for LCD_Update. |
@@ -194,7 +197,7 @@ Touch_Gesture_AddZone(&btn);
 
 | Function | Description |
 |---|---|
-| `SD_Init()` | Initialize SD_MMC in 1-bit mode (called by `WS_ESP32_Init`). |
+| `SD_Init()` | Initialize SD_MMC in 1-bit mode (called by **`WS_ESP32_Init`**). |
 | `SD_IsMounted(remount)` | Check if card is accessible. Set `remount=true` to auto-recover. |
 | `SD_Exists(path)` | Check if file/directory exists. |
 | `SD_FileSize(path)` | Get file size in bytes. |
@@ -229,7 +232,7 @@ MP3 playback from SD card via I2S DAC. Audio runs on a dedicated FreeRTOS task f
 
 | Function | Description |
 |---|---|
-| `Audio_Init()` | Initialize I2S and start audio task (called by `WS_ESP32_Init`). |
+| `Audio_Init()` | Initialize I2S and start audio task (called by **`WS_ESP32_Init`**). |
 | `Play_Music(directory, fileName)` | Play an MP3 file from SD card. |
 | `Play_Music_test()` | Play the test file `/music/test.mp3`. |
 | `Volume_adjustment(vol)` | Set volume (0–21). |
@@ -245,7 +248,7 @@ MP3 playback from SD card via I2S DAC. Audio runs on a dedicated FreeRTOS task f
 
 | Function | Description |
 |---|---|
-| `QMI8658_Init()` | Initialize IMU (called by `WS_ESP32_Init`). |
+| `QMI8658_Init()` | Initialize IMU (called by **`WS_ESP32_Init`**). |
 | `QMI8658_Loop()` | Update sensor readings and orientation (called by `WS_ESP32_Loop`). |
 | `getAccX()`, `getAccY()`, `getAccZ()` | Accelerometer axes (g). |
 | `getGyroX()`, `getGyroY()`, `getGyroZ()` | Gyroscope axes (°/s). |
@@ -260,7 +263,7 @@ MP3 playback from SD card via I2S DAC. Audio runs on a dedicated FreeRTOS task f
 
 | Function | Description |
 |---|---|
-| `BAT_Init()` | Initialize ADC (called by `WS_ESP32_Init`). |
+| `BAT_Init()` | Initialize ADC (called by **`WS_ESP32_Init`**). |
 | `BAT_Get_Volts()` | Read battery voltage (returns `float` in volts). |
 | `BAT_voltageToPercent(float v)` | Convert voltage to 0–100% using a Li-ion discharge curve (piecewise linear, 11-point lookup table). |
 | `BAT_store_volt_history()` | Store the current voltage into a rolling 20-sample buffer (called by `WS_ESP32_Loop`). |
@@ -272,7 +275,7 @@ Real-time clock on I2C bus 0 (shared with IMU). Provides date/time keeping and a
 
 | Function | Description |
 |---|---|
-| `PCF85063_Init()` | Initialize the RTC in 24-hour mode (called by `WS_ESP32_Init`). |
+| `PCF85063_Init()` | Initialize the RTC in 24-hour mode (called by **`WS_ESP32_Init`**). |
 | `PCF85063_Loop()` | Read current date/time into the global `datetime` struct (called by `WS_ESP32_Loop`). |
 | `PCF85063_Reset()` | Software reset the RTC. |
 | `PCF85063_Set_Time(datetime_t t)` | Set hours, minutes, seconds. |
@@ -292,7 +295,7 @@ Real-time clock on I2C bus 0 (shared with IMU). Provides date/time keeping and a
 
 | Function | Description |
 |---|---|
-| `PWR_Init()` | Initialize power key GPIO (called by `WS_ESP32_Init`). |
+| `PWR_Init()` | Initialize power key GPIO (called by **`WS_ESP32_Init`**). |
 | `PWR_Loop()` | Poll power button (called by `WS_ESP32_Loop`). |
 | `Fall_Asleep()` | Enter light sleep mode. |
 | `Shutdown()` | Power off the device. |
@@ -306,7 +309,7 @@ Automatically detected at compile time. When LVGL is not installed, all function
 
 | Function | Description |
 |---|---|
-| `LVGL_Init()` | Register LVGL display and touch drivers (called by `WS_ESP32_Init`). |
+| `LVGL_Init()` | Register LVGL display and touch drivers (called by **`WS_ESP32_Init`**). |
 | `LVGL_Loop()` | Run `lv_timer_handler()` (called by `WS_ESP32_Loop`). |
 | `LVGL_GetDisplay()` | Get the `lv_display_t*` for advanced configuration. |
 | `LVGL_GetIndev()` | Get the `lv_indev_t*` for advanced configuration. |
@@ -319,7 +322,7 @@ Low-level I2C helper for Wire bus 0 (IMU). Touch uses Wire1 separately.
 
 | Function | Description |
 |---|---|
-| `I2C_Init()` | Initialize Wire bus 0 on SDA=11, SCL=10 (called by `WS_ESP32_Init`). |
+| `I2C_Init()` | Initialize Wire bus 0 on SDA=11, SCL=10 (called by **`WS_ESP32_Init`**). |
 | `I2C_Read(addr, reg, data, len)` | Read registers from an I2C device. |
 | `I2C_Write(addr, reg, data, len)` | Write registers to an I2C device. |
 
@@ -335,7 +338,7 @@ The library includes five example sketches (File → Examples → WS_ESP32_Touch
 
 ## Architecture Notes
 
-The library is designed around a shared PSRAM framebuffer. All drawing — whether from raw `LCD_FB_*` calls, SD card image loading, or LVGL widget rendering — writes into the same 153,600-byte buffer. A FreeRTOS mutex (`lcd_fb_mutex`) protects concurrent access from both CPU cores, and a background task streams dirty regions to the ST7789 via SPI at 80 MHz.
+The library is designed around a shared PSRAM framebuffer. All drawing — whether from raw `LCD_FB_*` calls, SD card image loading, or LVGL widget rendering — writes into the same 153,600-byte buffer. A FreeRTOS mutex (`lcd_fb_mutex`) protects concurrent access from both CPU cores, and the `WS_ESP32_Loop()` performs the maintaining features for updating the screen by burst streaming to the ST7789 via SPI at 80 MHz.
 
 LVGL is integrated as an optional overlay: its flush callback copies rendered pixels into the existing framebuffer and marks the affected region dirty, so the existing SPI pipeline handles all hardware communication. The touch input callback reads from the gesture layer's raw position API, letting LVGL handle its own gesture recognition internally.
 
