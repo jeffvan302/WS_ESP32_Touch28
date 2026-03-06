@@ -13,29 +13,10 @@
 #define SD_D2_PIN       -1
 #define SD_D3_PIN       21
 
-// ── Image rotation constants ────────────────────────────────────────
-#define IMG_ROTATE_0     0
-#define IMG_ROTATE_90    90
-#define IMG_ROTATE_180   180
-#define IMG_ROTATE_270   270
-
-// ── Image scale mode constants ──────────────────────────────────────
-#define IMG_SCALE_NONE   0    // Use scale factor as-is
-#define IMG_SCALE_FIT    1    // Fit within target w/h, preserve aspect
-#define IMG_SCALE_FILL   2    // Fill target w/h, crop excess
-
 // ── Status / info ───────────────────────────────────────────────────
 extern bool     SD_Card_Mounted;
 extern uint16_t SD_Card_SizeMB;
 extern uint16_t Flash_SizeMB;
-
-// ── Image info struct (returned by SD_ImageInfo) ────────────────────
-struct ImageInfo {
-  uint16_t width;
-  uint16_t height;
-  uint8_t  type;        // 0=unknown, 1=JPG, 2=PNG
-  bool     valid;
-};
 
 // ═══════════════════════════════════════════════════════════════════
 //  CORE SD CARD
@@ -126,50 +107,3 @@ bool SD_WriteBinaryFile(const char* path, const uint8_t* data, size_t length);
 // Open a file for streaming access.  Caller manages the File object.
 // mode: FILE_READ, FILE_WRITE, or FILE_APPEND.
 File SD_OpenFile(const char* path, const char* mode);
-
-// ═══════════════════════════════════════════════════════════════════
-//  IMAGE LOADING  (JPG / PNG  →  RGB565 framebuffer)
-//
-//  Requires Arduino libraries (install via Library Manager):
-//    - JPEGDEC   by Larry Bank
-//    - PNGdec    by Larry Bank
-//
-//  All image functions decode from SD card, apply optional
-//  scaling + rotation, and blit the result into an RGB565 buffer
-//  (typically your lcd_framebuffer from Display_ST7789).
-// ═══════════════════════════════════════════════════════════════════
-
-// Get image dimensions and type without fully decoding.
-ImageInfo SD_ImageInfo(const char* path);
-
-// Load a JPG file and draw it into the framebuffer.
-//   fb / fbWidth / fbHeight : target RGB565 buffer and its dimensions
-//   destX, destY            : where to place the top-left corner
-//   scale                   : 1.0 = original, 0.5 = half, 2.0 = double, etc.
-//   rotation                : IMG_ROTATE_0 / 90 / 180 / 270
-// Returns true on success.
-bool SD_LoadJPG(const char* path,
-                uint16_t* fb, uint16_t fbWidth, uint16_t fbHeight,
-                int16_t destX, int16_t destY,
-                float scale, uint16_t rotation);
-
-// Load a PNG file and draw it into the framebuffer.
-// Same parameters as SD_LoadJPG.
-bool SD_LoadPNG(const char* path,
-                uint16_t* fb, uint16_t fbWidth, uint16_t fbHeight,
-                int16_t destX, int16_t destY,
-                float scale, uint16_t rotation);
-
-// Auto-detect JPG or PNG and load.  Convenience wrapper.
-bool SD_LoadImage(const char* path,
-                  uint16_t* fb, uint16_t fbWidth, uint16_t fbHeight,
-                  int16_t destX, int16_t destY,
-                  float scale, uint16_t rotation);
-
-// Load an image and scale it to fit within maxW x maxH,
-// preserving aspect ratio, centered at (destX, destY).
-bool SD_LoadImageFit(const char* path,
-                     uint16_t* fb, uint16_t fbWidth, uint16_t fbHeight,
-                     int16_t destX, int16_t destY,
-                     uint16_t maxW, uint16_t maxH,
-                     uint16_t rotation);
