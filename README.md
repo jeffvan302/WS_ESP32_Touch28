@@ -6,6 +6,9 @@ Hardware abstraction library for the **Waveshare ESP32-S3 Touch 2.8"** developme
 ## WIFI Notes
 There is no added features for bluetooth or wifi, since the built in libraries for ESP32 is sufficient.  Depending on the project other libraries would be required.  The intent of this library is to make the specific hardware on the **Waveshare ESP32-S3 Touch 2.8"** easy to access.
 
+## LVGL operations
+LVGL library requires the configuration of the lv_conf.h file for the hardware you use.  Since this library enables the drivers for the Waveshare ESP32-S3-Touch-LCD-2.8 device, the lv_conf.h is included in this library.  To run LVGL on this device just look at the example below.
+
 ## Features
 
 - **ST7789 240×320 LCD** — PSRAM-backed framebuffer with dirty-rectangle optimization and dual-core mutex safety
