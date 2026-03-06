@@ -1,0 +1,234 @@
+#######################################
+# Syntax Coloring Map for WS_ESP32_Touch28
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1) - classes, structs, enums
+#######################################
+
+TouchZone	KEYWORD1
+TouchEvent	KEYWORD1
+CST328_Touch	KEYWORD1
+DirtyRect	KEYWORD1
+ImageInfo	KEYWORD1
+IMUdata	KEYWORD1
+acc_odr_t	KEYWORD1
+gyro_odr_t	KEYWORD1
+acc_scale_t	KEYWORD1
+gyro_scale_t	KEYWORD1
+lpf_t	KEYWORD1
+sensor_state_t	KEYWORD1
+datetime_t	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+# ── Master Init/Loop ──
+WS_ESP32_Init	KEYWORD2
+WS_ESP32_Loop	KEYWORD2
+
+# ── Display (ST7789) ──
+LCD_Init	KEYWORD2
+LCD_SetRotation	KEYWORD2
+LCD_GetRotation	KEYWORD2
+Backlight_Init	KEYWORD2
+Set_Backlight	KEYWORD2
+LCD_FB_Start	KEYWORD2
+LCD_FB_End	KEYWORD2
+LCD_Update	KEYWORD2
+LCD_FB_MarkDirty	KEYWORD2
+LCD_FB_MarkFullDirty	KEYWORD2
+LCD_Color565	KEYWORD2
+LCD_FB_Clear	KEYWORD2
+LCD_FB_DrawPixel	KEYWORD2
+LCD_FB_FillRect	KEYWORD2
+LCD_FB_DrawHLine	KEYWORD2
+LCD_FB_DrawVLine	KEYWORD2
+LCD_FB_DrawRect	KEYWORD2
+LCD_FB_Blit	KEYWORD2
+
+# ── Touch (CST328) ──
+Touch_Init	KEYWORD2
+Touch_Read_Data	KEYWORD2
+Touch_Get_XY	KEYWORD2
+CST328_Touch_Reset	KEYWORD2
+CST328_Read_cfg	KEYWORD2
+
+# ── Touch Gestures ──
+Touch_Gesture_AddZone	KEYWORD2
+Touch_Gesture_RemoveZone	KEYWORD2
+Touch_Gesture_ClearZones	KEYWORD2
+Touch_Gesture_EnableZone	KEYWORD2
+Touch_Gesture_MoveZone	KEYWORD2
+Touch_Gesture_ResizeZone	KEYWORD2
+Touch_Gesture_SetDetect	KEYWORD2
+Touch_Gesture_GetZone	KEYWORD2
+Touch_Gesture_ZoneCount	KEYWORD2
+Touch_Gesture_Process	KEYWORD2
+Touch_IsPressed	KEYWORD2
+Touch_GetRawXY	KEYWORD2
+Touch_MakeRect	KEYWORD2
+Touch_MakeCircle	KEYWORD2
+
+# ── SD Card ──
+SD_Init	KEYWORD2
+SD_Deinit	KEYWORD2
+SD_IsMounted	KEYWORD2
+SD_TotalBytes	KEYWORD2
+SD_UsedBytes	KEYWORD2
+SD_FreeBytes	KEYWORD2
+SD_GetFlashSizeMB	KEYWORD2
+SD_Exists	KEYWORD2
+SD_FileSize	KEYWORD2
+SD_DeleteFile	KEYWORD2
+SD_RenameFile	KEYWORD2
+SD_CreateDir	KEYWORD2
+SD_RemoveDir	KEYWORD2
+SD_FindFile	KEYWORD2
+SD_ListFiles	KEYWORD2
+SD_ReadTextFile	KEYWORD2
+SD_ReadTextFileAlloc	KEYWORD2
+SD_WriteTextFile	KEYWORD2
+SD_AppendTextFile	KEYWORD2
+SD_ReadBinaryFile	KEYWORD2
+SD_WriteBinaryFile	KEYWORD2
+SD_OpenFile	KEYWORD2
+SD_ImageInfo	KEYWORD2
+SD_LoadJPG	KEYWORD2
+SD_LoadPNG	KEYWORD2
+SD_LoadImage	KEYWORD2
+SD_LoadImageFit	KEYWORD2
+
+# ── Audio (PCM5101) ──
+Audio_Init	KEYWORD2
+Play_Music_test	KEYWORD2
+Play_Music	KEYWORD2
+Volume_adjustment	KEYWORD2
+Music_pause	KEYWORD2
+Music_resume	KEYWORD2
+Music_Duration	KEYWORD2
+Music_Elapsed	KEYWORD2
+Music_Energy	KEYWORD2
+
+# ── Battery ──
+BAT_Init	KEYWORD2
+BAT_Get_Volts	KEYWORD2
+BAT_voltageToPercent	KEYWORD2
+BAT_store_volt_history	KEYWORD2
+BAT_read_avarage_Volts	KEYWORD2
+
+# ── RTC (PCF85063) ──
+PCF85063_Init	KEYWORD2
+PCF85063_Loop	KEYWORD2
+PCF85063_Reset	KEYWORD2
+PCF85063_Set_Time	KEYWORD2
+PCF85063_Set_Date	KEYWORD2
+PCF85063_Set_All	KEYWORD2
+PCF85063_Read_Time	KEYWORD2
+PCF85063_Enable_Alarm	KEYWORD2
+PCF85063_Get_Alarm_Flag	KEYWORD2
+PCF85063_Set_Alarm	KEYWORD2
+PCF85063_Read_Alarm	KEYWORD2
+datetime_to_str	KEYWORD2
+datetimeToEpoch	KEYWORD2
+
+# ── Power Key ──
+PWR_Init	KEYWORD2
+PWR_Loop	KEYWORD2
+Fall_Asleep	KEYWORD2
+Shutdown	KEYWORD2
+Restart	KEYWORD2
+
+# ── I2C ──
+I2C_Init	KEYWORD2
+I2C_Read	KEYWORD2
+I2C_Write	KEYWORD2
+
+# ── IMU (QMI8658) ──
+QMI8658_Init	KEYWORD2
+QMI8658_Loop	KEYWORD2
+getAccX	KEYWORD2
+getAccY	KEYWORD2
+getAccZ	KEYWORD2
+getGyroX	KEYWORD2
+getGyroY	KEYWORD2
+getGyroZ	KEYWORD2
+getAccelerometer	KEYWORD2
+getGyroscope	KEYWORD2
+setAccODR	KEYWORD2
+setGyroODR	KEYWORD2
+setAccScale	KEYWORD2
+setGyroScale	KEYWORD2
+setAccLPF	KEYWORD2
+setGyroLPF	KEYWORD2
+setState	KEYWORD2
+IMU_GetYaw	KEYWORD2
+IMU_GetPitch	KEYWORD2
+IMU_GetRoll	KEYWORD2
+IMU_ResetOrientation	KEYWORD2
+
+# ── LVGL Driver ──
+LVGL_Init	KEYWORD2
+LVGL_Loop	KEYWORD2
+LVGL_SetRotation	KEYWORD2
+LVGL_GetDisplay	KEYWORD2
+LVGL_GetIndev	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+# ── Display ──
+LCD_WIDTH	LITERAL1
+LCD_HEIGHT	LITERAL1
+LCD_PANEL_W	LITERAL1
+LCD_PANEL_H	LITERAL1
+VERTICAL	LITERAL1
+HORIZONTAL	LITERAL1
+
+# ── Gesture flags ──
+GESTURE_NONE	LITERAL1
+GESTURE_CLICK	LITERAL1
+GESTURE_DOUBLE_CLICK	LITERAL1
+GESTURE_SWIPE_UP	LITERAL1
+GESTURE_SWIPE_DOWN	LITERAL1
+GESTURE_SWIPE_LEFT	LITERAL1
+GESTURE_SWIPE_RIGHT	LITERAL1
+GESTURE_DRAG	LITERAL1
+GESTURE_LONG_PRESS	LITERAL1
+GESTURE_SWIPE_ANY	LITERAL1
+GESTURE_ALL	LITERAL1
+DRAG_START	LITERAL1
+DRAG_MOVE	LITERAL1
+DRAG_END	LITERAL1
+ZONE_RECT	LITERAL1
+ZONE_CIRCLE	LITERAL1
+
+# ── Image constants ──
+IMG_ROTATE_0	LITERAL1
+IMG_ROTATE_90	LITERAL1
+IMG_ROTATE_180	LITERAL1
+IMG_ROTATE_270	LITERAL1
+IMG_SCALE_NONE	LITERAL1
+IMG_SCALE_FIT	LITERAL1
+IMG_SCALE_FILL	LITERAL1
+
+# ── IMU ranges ──
+ACC_RANGE_2G	LITERAL1
+ACC_RANGE_4G	LITERAL1
+ACC_RANGE_8G	LITERAL1
+ACC_RANGE_16G	LITERAL1
+GYR_RANGE_16DPS	LITERAL1
+GYR_RANGE_32DPS	LITERAL1
+GYR_RANGE_64DPS	LITERAL1
+GYR_RANGE_128DPS	LITERAL1
+GYR_RANGE_256DPS	LITERAL1
+GYR_RANGE_512DPS	LITERAL1
+GYR_RANGE_1024DPS	LITERAL1
+
+# ── LVGL ──
+HAS_LVGL	LITERAL1
+
+# ── Audio ──
+Volume_MAX	LITERAL1
